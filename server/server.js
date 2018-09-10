@@ -1,13 +1,19 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const {ObjectID} = require('mongodb');
+const path = require('path');
 
 const {mongoose} = require('./db/mongoose');
 const {Todo} = require('./models/todo');
 const {User} = require('./models/user');
 
+const publicPath = path.join(__dirname, '..', 'public');
+
+
 const app = express();
 const port = process.env.PORT || 3000;
+
+app.use(express.static(publicPath));
 
 app.use(bodyParser.json());
 
